@@ -20,7 +20,7 @@ curve = p.plot()
 
 
 raw=serial.Serial("com6",baudrate=115200,bytesize=8,stopbits=1,timeout=1)
-
+raw.flushInput()
 display_data = []
 chunk_size=50
 
