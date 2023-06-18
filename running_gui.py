@@ -130,22 +130,20 @@ class qt(QMainWindow):
 		self.pushButton_7.clicked.connect(self.save_serial_data_Button)
 		self.pushButton_8.clicked.connect(self.clear)
 		
-	# def loop_finished(self):...
-		# print('Looped Finished')
+	def loop_finished(self):...
+		# print('Disconnected')
 
 	def start_loop(self):
 		self.worker = Worker()  
 		self.thread = QThread() 
 		self.worker.moveToThread(self.thread)  
 		self.thread.started.connect(self.worker.work)
-		# self.thread.started.connect(self.worker.work2)
 		self.worker.current_data_Ready.connect(self.current_data_display)
 		self.worker.mean_data_Ready.connect(self.mean_data_display)
 		self.worker.std_data_Ready.connect(self.std_data_display)
 		self.pushButton_2.clicked.connect(self.stop_loop) 
-
-		# self.worker.finished.connect(self.loop_finished)  
-
+		self.worker.finished.connect(self.loop_finished) 
+	
 		# self.worker.finished.connect(self.thread.quit)  
 		# self.worker.finished.connect(self.worker.deleteLater)  
 		# self.thread.finished.connect(self.thread.deleteLater)  
